@@ -1,4 +1,4 @@
-
+#streamlit run app.py
 import os
 import re
 import ast
@@ -502,6 +502,35 @@ html, body, [class*="css"] {
   padding: 2rem 1.5rem 8rem;
 }
 
+/* MODE TABS */
+.mode-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.mode-tab {
+  flex: 1;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.mode-tab.active {
+  background: linear-gradient(135deg, var(--primary), #6b55ff);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+
 /* HERO */
 .hero-wrap {
   text-align: center;
@@ -812,6 +841,141 @@ html, body, [class*="css"] {
   text-transform: uppercase !important;
 }
 
+/* QUIZ STYLES */
+.quiz-header {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.quiz-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.quiz-title-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.quiz-counter {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.quiz-bar-bg {
+  height: 4px;
+  background: var(--surface2);
+  border-radius: 100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.quiz-bar-fill {
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--teal));
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+.quiz-question-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.quiz-q-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.quiz-q-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 0.55rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  line-height: 1.5;
+}
+
+.quiz-opt:hover { border-color: var(--primary); color: var(--text); }
+.quiz-opt.correct { border-color: var(--success) !important; color: var(--success) !important; background: rgba(92,219,149,0.08) !important; }
+.quiz-opt.wrong   { border-color: var(--danger)  !important; color: var(--danger)  !important; background: rgba(255,107,138,0.08) !important; }
+.quiz-opt.neutral { opacity: 0.45; }
+
+.quiz-explanation {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-top: 0.85rem;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.quiz-result-correct { color: var(--success); font-weight: 700; font-size: 13px; }
+.quiz-result-wrong   { color: var(--danger);  font-weight: 700; font-size: 13px; }
+
+.score-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.score-big {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary);
+  font-size: clamp(4rem, 12vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0.5rem 0;
+  text-shadow: 0 0 40px var(--primary-glow);
+}
+
+.score-sub { color: var(--text-muted); font-size: 15px; margin-top: 0.75rem; }
+.score-grade { color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+
+.quiz-setup-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 1.25rem;
+}
+
 /* Floating orbs */
 .orb {
   position: fixed;
@@ -841,7 +1005,6 @@ html, body, [class*="css"] {
   50% { transform: translateY(-30px) scale(1.05); }
 }
 
-/* Stagger animations on steps */
 .step-card:nth-child(1) { animation-delay: 0.1s; }
 .step-card:nth-child(2) { animation-delay: 0.2s; }
 .step-card:nth-child(3) { animation-delay: 0.3s; }
@@ -851,7 +1014,7 @@ html, body, [class*="css"] {
 
 
 # =============================================================================
-# Auth helpers (in-memory user store using session state as "db")
+# Auth helpers
 # =============================================================================
 
 def hash_pw(pw: str) -> str:
@@ -862,7 +1025,7 @@ def load_users() -> dict:
         st.session_state.users_db = {}
     return st.session_state.users_db
 
-def register_user(name: str, email: str, pw: str) -> tuple[bool, str]:
+def register_user(name: str, email: str, pw: str) -> tuple:
     users = load_users()
     key = email.lower().strip()
     if not name.strip():
@@ -876,7 +1039,7 @@ def register_user(name: str, email: str, pw: str) -> tuple[bool, str]:
     users[key] = {"name": name.strip(), "email": key, "pw": hash_pw(pw)}
     return True, "Account created! You can now log in."
 
-def login_user(email: str, pw: str) -> tuple[bool, str]:
+def login_user(email: str, pw: str) -> tuple:
     users = load_users()
     key = email.lower().strip()
     if key not in users:
@@ -887,7 +1050,7 @@ def login_user(email: str, pw: str) -> tuple[bool, str]:
 
 
 # =============================================================================
-# Logic helpers (unchanged from original)
+# Logic helpers
 # =============================================================================
 
 @st.cache_resource(show_spinner=False)
@@ -1066,6 +1229,43 @@ def get_suggestions(full_text):
     ]
 
 
+def generate_quiz(doc_texts: str, n: int = 5):
+    system = (
+        "Generate multiple-choice quiz questions from this document. "
+        "Output ONLY a valid Python list of dicts with these exact keys: "
+        "q (question string), options (list of exactly 4 strings), "
+        "answer (int 0-3 = index of correct option), explanation (1-2 sentence string). "
+        "Example: [{\"q\": \"What is X?\", \"options\": [\"A\",\"B\",\"C\",\"D\"], "
+        "\"answer\": 2, \"explanation\": \"Because...\"}, ...]. "
+        "No markdown, no preamble. Questions must be answerable from the document only."
+    )
+    user_msg = f"Generate exactly {n} MCQ questions from this document:\n\n{doc_texts[:5000]}"
+    raw = call_llm(system, user_msg, [])
+    try:
+        match = re.search(r"\[.*\]", raw, re.DOTALL)
+        if match:
+            items = ast.literal_eval(match.group())
+            if isinstance(items, list):
+                valid = [
+                    item for item in items
+                    if (item.get("q")
+                        and isinstance(item.get("options"), list)
+                        and len(item["options"]) == 4
+                        and isinstance(item.get("answer"), int)
+                        and 0 <= item["answer"] <= 3)
+                ]
+                if valid:
+                    return valid
+    except Exception:
+        pass
+    return [{
+        "q": "Quiz generation failed. Please try again.",
+        "options": ["Try again", "Reload PDF", "Check API key", "Restart app"],
+        "answer": 0,
+        "explanation": "The model could not generate quiz questions. Ensure your API key is valid.",
+    }]
+
+
 def build_export(history, doc_names):
     lines = [
         "LUMINA AI — CHAT EXPORT",
@@ -1101,13 +1301,33 @@ def reset_app():
     st.session_state.suggestions = []
     st.session_state.prefill = ""
     st.session_state.doc_filter = None
+    reset_quiz()
     st.rerun()
+
+
+def reset_quiz():
+    st.session_state.quiz_items = []
+    st.session_state.quiz_index = 0
+    st.session_state.quiz_score = 0
+    st.session_state.quiz_done = False
+    st.session_state.quiz_generated = False
+    st.session_state.quiz_answered = False
+    st.session_state.quiz_chosen = -1
 
 
 # =============================================================================
 # Session state
 # =============================================================================
 defaults = {
+    "mode": "chat",
+    "quiz_items": [],
+    "quiz_index": 0,
+    "quiz_score": 0,
+    "quiz_done": False,
+    "quiz_generated": False,
+    "quiz_answered": False,
+    "quiz_chosen": -1,
+    "quiz_n": 5,
     "history": [],
     "all_chunks": [],
     "all_embeddings": None,
@@ -1121,7 +1341,7 @@ defaults = {
     "logged_in": False,
     "current_user": None,
     "current_user_email": None,
-    "auth_page": "login",   # "login" or "register"
+    "auth_page": "login",
     "auth_msg": None,
     "auth_msg_type": None,
 }
@@ -1136,14 +1356,12 @@ for key, value in defaults.items():
 
 if not st.session_state.logged_in:
 
-    # Floating orbs
     st.markdown('<div class="orb orb-1"></div><div class="orb orb-2"></div>', unsafe_allow_html=True)
 
     col_l, col_c, col_r = st.columns([1, 1.2, 1])
     with col_c:
         st.markdown('<div style="height:2rem"></div>', unsafe_allow_html=True)
 
-        # Logo mark
         st.markdown("""
         <div class="auth-logo">
           <div class="auth-logo-mark">✦</div>
@@ -1152,7 +1370,6 @@ if not st.session_state.logged_in:
         </div>
         """, unsafe_allow_html=True)
 
-        # ---- MESSAGES ----
         if st.session_state.auth_msg:
             if st.session_state.auth_msg_type == "error":
                 st.markdown(f'<div class="auth-error">⚠ {safe(st.session_state.auth_msg)}</div>', unsafe_allow_html=True)
@@ -1161,7 +1378,6 @@ if not st.session_state.logged_in:
 
         st.markdown('<div class="auth-divider"></div>', unsafe_allow_html=True)
 
-        # =================== LOGIN ===================
         if st.session_state.auth_page == "login":
             st.markdown('<div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:0.5rem;">Sign in to your account</div>', unsafe_allow_html=True)
 
@@ -1183,18 +1399,13 @@ if not st.session_state.logged_in:
                     st.session_state.auth_msg_type = "error"
                     st.rerun()
 
-            st.markdown("""
-            <div class="auth-link">
-              Don't have an account?
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown('<div class="auth-link">Don\'t have an account?</div>', unsafe_allow_html=True)
 
             if st.button("Create an account →", use_container_width=True, key="go_register"):
                 st.session_state.auth_page = "register"
                 st.session_state.auth_msg = None
                 st.rerun()
 
-        # =================== REGISTER ===================
         else:
             st.markdown('<div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:0.5rem;">Create your account</div>', unsafe_allow_html=True)
 
@@ -1215,11 +1426,7 @@ if not st.session_state.logged_in:
                     st.session_state.auth_msg_type = "error"
                 st.rerun()
 
-            st.markdown("""
-            <div class="auth-link">
-              Already have an account?
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown('<div class="auth-link">Already have an account?</div>', unsafe_allow_html=True)
 
             if st.button("Sign in instead →", use_container_width=True, key="go_login"):
                 st.session_state.auth_page = "login"
@@ -1244,7 +1451,6 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    # User card
     st.markdown(f"""
     <div class="sidebar-user">
       <div class="sidebar-avatar">{user_initial}</div>
@@ -1297,6 +1503,7 @@ with st.sidebar:
             if new_docs_loaded:
                 st.session_state.history = []
                 st.session_state.prefill = ""
+                reset_quiz()
                 st.success("Documents indexed ✓")
 
     if st.session_state.docs:
@@ -1316,7 +1523,6 @@ with st.sidebar:
 
         total_pages = sum(m["pages"] for m in st.session_state.docs.values())
         total_words = sum(m["words"] for m in st.session_state.docs.values())
-        total_chunks = sum(m["chunks"] for m in st.session_state.docs.values())
 
         st.markdown(f"""
         <div class="stats-row">
@@ -1354,7 +1560,7 @@ st.markdown('<div class="orb orb-1"></div><div class="orb orb-2"></div>', unsafe
 st.markdown('<div class="main-wrap">', unsafe_allow_html=True)
 
 if not st.session_state.docs:
-    # ---- LANDING / UPLOAD PROMPT ----
+    # ---- LANDING ----
     st.markdown(f"""
     <div class="hero-wrap">
       <div class="hero-badge">✦ AI-Powered RAG</div>
@@ -1383,14 +1589,14 @@ if not st.session_state.docs:
       <div class="step-card">
         <div class="step-num">Step 03</div>
         <div class="step-icon">💬</div>
-        <div class="step-title">Ask anything</div>
-        <div class="step-desc">Get grounded answers with exact page citations and relevance scores.</div>
+        <div class="step-title">Chat or Quiz</div>
+        <div class="step-desc">Get grounded answers with exact page citations, or test your knowledge with a quiz.</div>
       </div>
     </div>
     """, unsafe_allow_html=True)
 
 else:
-    # ---- DOCUMENTS LOADED STATE ----
+    # ---- DOCUMENTS LOADED ----
 
     # Upload success banner
     doc_count = len(st.session_state.docs)
@@ -1400,108 +1606,317 @@ else:
       <div class="upload-success-icon">✅</div>
       <div>
         <div class="upload-success-title">{doc_count} document{'s' if doc_count > 1 else ''} ready</div>
-        <div class="upload-success-sub">{total_pg} pages indexed · Semantic search enabled · Ask your first question below</div>
+        <div class="upload-success-sub">{total_pg} pages indexed · Semantic search enabled · Choose Chat or Quiz below</div>
       </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # ---- SUMMARIES ----
-    for doc_name, summary in st.session_state.summaries.items():
-        short = doc_name if len(doc_name) <= 40 else doc_name[:37] + "…"
-        with st.expander(f"📋 Auto Summary — {short}", expanded=False):
-            st.markdown(f"""
-            <div class="summary-card" style="margin:0;border:none;background:transparent;padding:0;">
-              <div class="summary-label">Document Summary</div>
-              <div class="summary-text">{render_answer(summary)}</div>
-            </div>
-            """, unsafe_allow_html=True)
+    # ---- MODE TABS (Chat / Quiz) ----
+    tab_col1, tab_col2 = st.columns(2)
+    with tab_col1:
+        chat_active = "active" if st.session_state.mode == "chat" else ""
+        if st.button("💬 Chat", use_container_width=True, key="tab_chat"):
+            st.session_state.mode = "chat"
+            st.rerun()
+    with tab_col2:
+        quiz_active = "active" if st.session_state.mode == "quiz" else ""
+        if st.button("📝 Quiz", use_container_width=True, key="tab_quiz"):
+            st.session_state.mode = "quiz"
+            if not st.session_state.quiz_generated:
+                reset_quiz()
+            st.rerun()
 
-    # ---- SUGGESTED QUESTIONS ----
-    if not st.session_state.history and st.session_state.suggestions:
-        st.markdown('<div class="section-header">✦ Suggested Questions</div>', unsafe_allow_html=True)
-        st.markdown('<div class="suggest-grid">', unsafe_allow_html=True)
-        cols = st.columns(2)
-        for i, q in enumerate(st.session_state.suggestions):
-            with cols[i % 2]:
-                if st.button(f"💡 {q}", key=f"suggest_{i}", use_container_width=True):
-                    st.session_state.prefill = q
-                    st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("---")
 
-    # ---- CONVERSATION ----
-    if st.session_state.history:
-        st.markdown('<div class="section-header">💬 Conversation</div>', unsafe_allow_html=True)
-        st.markdown('<div class="chat-area">', unsafe_allow_html=True)
+    # ======================================================================
+    # CHAT MODE
+    # ======================================================================
+    if st.session_state.mode == "chat":
 
-        for turn in st.session_state.history:
-            # User bubble
-            st.markdown(f"""
-            <div class="msg-user">
-              <div class="bubble-user">{safe(turn['q'])}</div>
-              <div class="av-user">{user_initial}</div>
-            </div>
-            """, unsafe_allow_html=True)
+        # Summaries
+        for doc_name, summary in st.session_state.summaries.items():
+            short = doc_name if len(doc_name) <= 40 else doc_name[:37] + "…"
+            with st.expander(f"📋 Auto Summary — {short}", expanded=False):
+                st.markdown(f"""
+                <div class="summary-card" style="margin:0;border:none;background:transparent;padding:0;">
+                  <div class="summary-label">Document Summary</div>
+                  <div class="summary-text">{render_answer(summary)}</div>
+                </div>
+                """, unsafe_allow_html=True)
 
-            # AI bubble
-            answer_text = render_answer(turn['a'])
-            citations_html = ""
-            if turn.get("citations"):
-                chips = ""
-                for c in turn["citations"]:
-                    score_pct = int(c["score"] * 100)
-                    short_doc = c["doc"] if len(c["doc"]) <= 18 else c["doc"][:15] + "…"
-                    chips += f'<div class="cite-chip">📄 {safe(short_doc)} · p.{c["page"]} · <span>{score_pct}%</span></div>'
-                citations_html = f'<div class="cite-row">{chips}</div>'
+        # Suggested questions
+        if not st.session_state.history and st.session_state.suggestions:
+            st.markdown('<div class="section-header">✦ Suggested Questions</div>', unsafe_allow_html=True)
+            st.markdown('<div class="suggest-grid">', unsafe_allow_html=True)
+            cols = st.columns(2)
+            for i, q in enumerate(st.session_state.suggestions):
+                with cols[i % 2]:
+                    if st.button(f"💡 {q}", key=f"suggest_{i}", use_container_width=True):
+                        st.session_state.prefill = q
+                        st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
 
-            st.markdown(f"""
-            <div class="msg-ai">
-              <div class="av-ai">✦</div>
-              <div>
-                <div class="bubble-ai">{answer_text}{citations_html}</div>
+        # Conversation
+        if st.session_state.history:
+            st.markdown('<div class="section-header">💬 Conversation</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chat-area">', unsafe_allow_html=True)
+
+            for turn in st.session_state.history:
+                st.markdown(f"""
+                <div class="msg-user">
+                  <div class="bubble-user">{safe(turn['q'])}</div>
+                  <div class="av-user">{user_initial}</div>
+                </div>
+                """, unsafe_allow_html=True)
+
+                answer_text = render_answer(turn['a'])
+                citations_html = ""
+                if turn.get("citations"):
+                    chips = ""
+                    for c in turn["citations"]:
+                        score_pct = int(c["score"] * 100)
+                        short_doc = c["doc"] if len(c["doc"]) <= 18 else c["doc"][:15] + "…"
+                        chips += f'<div class="cite-chip">📄 {safe(short_doc)} · p.{c["page"]} · <span>{score_pct}%</span></div>'
+                    citations_html = f'<div class="cite-row">{chips}</div>'
+
+                st.markdown(f"""
+                <div class="msg-ai">
+                  <div class="av-ai">✦</div>
+                  <div>
+                    <div class="bubble-ai">{answer_text}{citations_html}</div>
+                  </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        # Export
+        if st.session_state.history:
+            export_text = build_export(st.session_state.history, list(st.session_state.docs.keys()))
+            st.download_button(
+                "⬇ Export Conversation",
+                data=export_text,
+                file_name=f"lumina_chat_{datetime.now().strftime('%Y%m%d_%H%M')}.txt",
+                mime="text/plain",
+            )
+
+        # Query box
+        with st.form("query_form", clear_on_submit=True):
+            prompt = st.text_input(
+                "✦ Ask a question",
+                value=st.session_state.prefill,
+                placeholder="What would you like to know about your document?",
+            )
+            submitted = st.form_submit_button("Send →", use_container_width=True)
+
+        if submitted:
+            question = prompt.strip()
+            if not question:
+                st.warning("Please type a question first.")
+            elif not active_key_ok():
+                st.error("Please add your Groq API key in the sidebar to start querying.")
+            else:
+                with st.spinner("Searching and generating answer…"):
+                    results = semantic_search(
+                        question,
+                        st.session_state.all_chunks,
+                        st.session_state.all_embeddings,
+                        k=5,
+                        doc_filter=st.session_state.doc_filter,
+                    )
+                    answer = get_answer(results, question, st.session_state.history)
+
+                st.session_state.history.append({"q": question, "a": answer, "citations": results})
+                st.session_state.prefill = ""
+                st.rerun()
+
+    # ======================================================================
+    # QUIZ MODE
+    # ======================================================================
+    elif st.session_state.mode == "quiz":
+
+        if not active_key_ok():
+            st.error("Add your Groq API key in the sidebar to use Quiz mode.")
+
+        # ── Setup screen ──────────────────────────────────────────────────
+        elif not st.session_state.quiz_generated:
+            st.markdown("""
+            <div class="quiz-setup-card">
+              <div class="summary-label">Quiz Mode</div>
+              <div class="summary-text">
+                Lumina will generate multiple-choice questions directly from your loaded document(s).
+                Choose how many questions you want, then hit Generate to start.
+                Each question shows the correct answer and an explanation after you respond.
               </div>
             </div>
             """, unsafe_allow_html=True)
 
-        st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-header">✦ Number of Questions</div>', unsafe_allow_html=True)
+            quiz_n = st.number_input(
+                "n_questions", min_value=3, max_value=20,
+                value=st.session_state.quiz_n, step=1,
+                label_visibility="collapsed",
+            )
+            st.session_state.quiz_n = int(quiz_n)
 
-    # ---- EXPORT ----
-    if st.session_state.history:
-        export_text = build_export(st.session_state.history, list(st.session_state.docs.keys()))
-        st.download_button(
-            "⬇ Export Conversation",
-            data=export_text,
-            file_name=f"lumina_chat_{datetime.now().strftime('%Y%m%d_%H%M')}.txt",
-            mime="text/plain",
-        )
-
-    # ---- QUERY BOX ----
-    with st.form("query_form", clear_on_submit=True):
-        prompt = st.text_input(
-            "✦ Ask a question",
-            value=st.session_state.prefill,
-            placeholder="What would you like to know about your document?",
-        )
-        submitted = st.form_submit_button("Send →", use_container_width=True)
-
-    if submitted:
-        question = prompt.strip()
-        if not question:
-            st.warning("Please type a question first.")
-        elif not active_key_ok():
-            st.error("Please add your Groq API key in the sidebar to start querying.")
-        else:
-            with st.spinner("Searching and generating answer…"):
-                results = semantic_search(
-                    question,
-                    st.session_state.all_chunks,
-                    st.session_state.all_embeddings,
-                    k=5,
-                    doc_filter=st.session_state.doc_filter,
+            doc_names = list(st.session_state.docs.keys())
+            if len(doc_names) > 1:
+                st.markdown('<div class="section-header">✦ Quiz On</div>', unsafe_allow_html=True)
+                quiz_doc_focus = st.selectbox(
+                    "quiz_doc",
+                    ["All documents"] + doc_names,
+                    label_visibility="collapsed",
                 )
-                answer = get_answer(results, question, st.session_state.history)
+            else:
+                quiz_doc_focus = doc_names[0] if doc_names else "All documents"
 
-            st.session_state.history.append({"q": question, "a": answer, "citations": results})
-            st.session_state.prefill = ""
-            st.rerun()
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("✦ Generate Quiz", use_container_width=False, key="gen_quiz"):
+                if not doc_names:
+                    st.warning("Upload a document first.")
+                else:
+                    if quiz_doc_focus == "All documents":
+                        combined_text = "\n\n".join(m["full_text"] for m in st.session_state.docs.values())
+                    else:
+                        combined_text = st.session_state.docs[quiz_doc_focus]["full_text"]
+
+                    with st.spinner(f"Generating {st.session_state.quiz_n} questions…"):
+                        items = generate_quiz(combined_text, n=st.session_state.quiz_n)
+
+                    st.session_state.quiz_items = items
+                    st.session_state.quiz_index = 0
+                    st.session_state.quiz_score = 0
+                    st.session_state.quiz_done = False
+                    st.session_state.quiz_generated = True
+                    st.session_state.quiz_answered = False
+                    st.session_state.quiz_chosen = -1
+                    st.rerun()
+
+        # ── Results screen ────────────────────────────────────────────────
+        elif st.session_state.quiz_done:
+            total = len(st.session_state.quiz_items)
+            score = st.session_state.quiz_score
+            pct = int(100 * score / total) if total else 0
+            grade = (
+                "Excellent! 🏆" if pct >= 80 else
+                "Good Job! 👍" if pct >= 60 else
+                "Keep Studying 📚"
+            )
+            st.markdown(f"""
+            <div class="score-box">
+              <div class="score-grade">{grade}</div>
+              <div class="score-big">{pct}%</div>
+              <div class="score-sub">{score} / {total} correct</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            c1, c2, c3 = st.columns(3)
+            with c1:
+                if st.button("🔄 Retry Same Quiz", use_container_width=True):
+                    st.session_state.quiz_index = 0
+                    st.session_state.quiz_score = 0
+                    st.session_state.quiz_done = False
+                    st.session_state.quiz_answered = False
+                    st.session_state.quiz_chosen = -1
+                    st.rerun()
+            with c2:
+                if st.button("🎲 New Quiz", use_container_width=True):
+                    reset_quiz()
+                    st.rerun()
+            with c3:
+                if st.button("💬 Back to Chat", use_container_width=True):
+                    reset_quiz()
+                    st.session_state.mode = "chat"
+                    st.rerun()
+
+        # ── Active question ───────────────────────────────────────────────
+        else:
+            items = st.session_state.quiz_items
+            total = len(items)
+            idx = st.session_state.quiz_index
+            item = items[idx]
+            pct_bar = int(100 * idx / total)
+
+            # Progress header
+            st.markdown(f"""
+            <div class="quiz-header">
+              <div class="quiz-header-top">
+                <span class="quiz-title-label">✦ Quiz Mode</span>
+                <span class="quiz-counter">Question {idx+1} of {total} &nbsp;·&nbsp; Score: {st.session_state.quiz_score}</span>
+              </div>
+              <div class="quiz-bar-bg">
+                <div class="quiz-bar-fill" style="width:{pct_bar}%"></div>
+              </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            # Question card
+            st.markdown(f"""
+            <div class="quiz-question-card">
+              <div class="quiz-q-label">Question {idx+1}</div>
+              <div class="quiz-q-text">{safe(item['q'])}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            answered = st.session_state.quiz_answered
+            chosen = st.session_state.quiz_chosen
+            correct_idx = item["answer"]
+
+            if not answered:
+                # Show clickable option buttons
+                for oi, opt in enumerate(item["options"]):
+                    label = f"{chr(65+oi)}.  {opt}"
+                    if st.button(label, key=f"qopt_{idx}_{oi}", use_container_width=True):
+                        st.session_state.quiz_answered = True
+                        st.session_state.quiz_chosen = oi
+                        if oi == correct_idx:
+                            st.session_state.quiz_score += 1
+                        st.rerun()
+            else:
+                # Show colour-coded results
+                for oi, opt in enumerate(item["options"]):
+                    if oi == correct_idx:
+                        cls, marker = "correct", "✓ Correct"
+                    elif oi == chosen:
+                        cls, marker = "wrong", "✗ Your Answer"
+                    else:
+                        cls, marker = "neutral", ""
+                    st.markdown(
+                        f'<div class="quiz-opt {cls}">'
+                        f'{chr(65+oi)}.  {safe(opt)}'
+                        f'<span style="float:right;font-size:11px;opacity:0.85;">{marker}</span>'
+                        f'</div>',
+                        unsafe_allow_html=True,
+                    )
+
+                # Result + explanation
+                result_cls = "quiz-result-correct" if chosen == correct_idx else "quiz-result-wrong"
+                result_text = "Correct! 🎉" if chosen == correct_idx else (
+                    f"Incorrect — correct answer: {item['options'][correct_idx]}"
+                )
+                explanation = safe(item.get("explanation", ""))
+                st.markdown(f"""
+                <div class="quiz-explanation">
+                  <span class="{result_cls}">{result_text}</span>
+                  {"<br><br>" + explanation if explanation else ""}
+                </div>
+                """, unsafe_allow_html=True)
+
+                st.markdown("<br>", unsafe_allow_html=True)
+                next_label = "🏁 Finish Quiz" if idx + 1 >= total else "Next Question →"
+                col_next, col_abandon = st.columns([2, 1])
+                with col_next:
+                    if st.button(next_label, use_container_width=True, key="next_q"):
+                        if idx + 1 >= total:
+                            st.session_state.quiz_done = True
+                        else:
+                            st.session_state.quiz_index += 1
+                            st.session_state.quiz_answered = False
+                            st.session_state.quiz_chosen = -1
+                        st.rerun()
+                with col_abandon:
+                    if st.button("Abandon Quiz", use_container_width=True, key="abandon_quiz"):
+                        reset_quiz()
+                        st.rerun()
 
 st.markdown('</div>', unsafe_allow_html=True)
